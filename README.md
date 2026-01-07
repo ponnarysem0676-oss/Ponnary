@@ -26,11 +26,3 @@ Replace the YouTube video
   ```html
   <iframe src="https://www.youtube.com/embed/VIDEO_ID"></iframe>
   ```
-  Replace `VIDEO_ID` with the video id you want to embed.
-
-Questions or changes
-- Tell me if you want:
-  - A downloadable demo ZIP
-  - Example of hybrid encryption (AES key encryption with RSA)
-  - Server-side demo (Node) showing key exchange and storage
-```
