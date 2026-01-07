@@ -1,0 +1,113 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width,initial-scale=1" />
+  <title>Encryption / Decryption Demo</title>
+  <link rel="stylesheet" href="styles.css" />
+</head>
+<body>
+  <header>
+    <h1>Encryption & Decryption — Interactive Demo</h1>
+    <p class="lead">Learn the basics of symmetric and asymmetric encryption and try them in your browser using the Web Crypto API.</p>
+  </header>
+
+  <main>
+    <section class="lesson card">
+      <h2>Lesson: Basics</h2>
+      <p>
+        Encryption transforms readable data (plaintext) into an unreadable format (ciphertext). Decryption reverses it.
+        Two common categories:
+      </p>
+      <ul>
+        <li><strong>Symmetric encryption</strong> — same secret key used for encryption and decryption (example: AES-GCM).</li>
+        <li><strong>Asymmetric encryption</strong> — public/private key pair. Public key encrypts, private key decrypts (example: RSA-OAEP).</li>
+      </ul>
+      <p>
+        This page uses the browser's <code>window.crypto.subtle</code> (Web Crypto API) for real cryptographic primitives.
+        Do not use these demos directly for production secret management — they are for learning and prototyping only.
+      </p>
+      <div class="video-wrap">
+        <h3>Recommended video</h3>
+        <!-- Replace VIDEO_ID with a YouTube video id you want to show -->
+        <iframe id="yt" width="560" height="315" src="https://www.youtube.com/embed/VIDEO_ID"
+          title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
+          allowfullscreen></iframe>
+        <p class="muted small">Tip: replace <code>VIDEO_ID</code> in the iframe src with any YouTube video id (e.g. "dQw4w9WgXcQ").</p>
+      </div>
+    </section>
+
+    <section class="card demo">
+      <h2>Symmetric demo — AES-GCM (browser)</h2>
+      <p>Generate an AES-256-GCM key, encrypt a short message, and then decrypt it.</p>
+
+      <div class="row">
+        <div class="col">
+          <label>Message</label>
+          <textarea id="aes-plaintext" rows="4">Hello, AES-GCM!</textarea>
+
+          <div class="controls">
+            <button id="aes-gen">Generate AES Key</button>
+            <button id="aes-encrypt" disabled>Encrypt</button>
+            <button id="aes-decrypt" disabled>Decrypt</button>
+          </div>
+        </div>
+
+        <div class="col">
+          <label>Ciphertext (base64)</label>
+          <textarea id="aes-ciphertext" rows="4" readonly></textarea>
+
+          <label>IV (base64)</label>
+          <input id="aes-iv" readonly />
+
+          <label>Decrypted</label>
+          <textarea id="aes-decrypted" rows="2" readonly></textarea>
+        </div>
+      </div>
+    </section>
+
+    <section class="card demo">
+      <h2>Asymmetric demo — RSA-OAEP (browser)</h2>
+      <p>Generate an RSA key pair, export the public key, encrypt with the public key, and decrypt with the private key.</p>
+
+      <div class="row">
+        <div class="col">
+          <label>Plaintext to encrypt</label>
+          <textarea id="rsa-plaintext" rows="3">Hello, RSA-OAEP!</textarea>
+
+          <div class="controls">
+            <button id="rsa-gen">Generate RSA Key Pair</button>
+            <button id="rsa-encrypt" disabled>Encrypt (public key)</button>
+            <button id="rsa-decrypt" disabled>Decrypt (private key)</button>
+          </div>
+        </div>
+
+        <div class="col">
+          <label>Public key (SPKI, base64)</label>
+          <textarea id="rsa-public" rows="4" readonly></textarea>
+
+          <label>Ciphertext (base64)</label>
+          <textarea id="rsa-ciphertext" rows="4" readonly></textarea>
+
+          <label>Decrypted</label>
+          <textarea id="rsa-decrypted" rows="2" readonly></textarea>
+        </div>
+      </div>
+      <p class="muted small">Note: RSA can only encrypt small messages up to key-dependent limits. For large data use hybrid encryption (encrypt data with AES, encrypt AES key with RSA).</p>
+    </section>
+
+    <section class="card about">
+      <h2>About this demo</h2>
+      <p>
+        This demo runs entirely in your browser using the Web Crypto API. Keys are generated locally and never leave your machine unless you copy and share them.
+      </p>
+    </section>
+  </main>
+
+  <footer>
+    <small>Created for learning — not production. See README.md for running instructions and limitations.</small>
+  </footer>
+
+  <script src="script.js"></script>
+</body>
+</html>
